@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Fix the code so that invoking the whoIsStronger function
+      // will print "I am stronger".
+      // note: you cannot change the 'hero' or the whoIsStronger
+      // function.
+
+      const hero = {
+        health: 5,
+        power: 68,
+        getStrength: function () {
+          if (this.health <= 5) {
+            return this.power - 10;
+          } else return this.power;
+        },
+      };
+      function whoIsStronger(getStrength) {
+        const myStrength = 82;
+        if (getStrength() < myStrength) {
+          return "I am stronger";
+        } else return "You are stronger";
+      };
+
+     let newFunc = whoIsStronger.bind(hero);
+     console.log(newFunc(hero.getStrength));
+    //  console.log(whoIsStronger(hero.getStrength));
+    console.log(whoIsStronger(hero.getStrength.bind(hero)));
+    //getStrength function is used as a callback in whoIsStronger function, and so it is invoked in whoIsStronger context.
+    // this of it will be whoIsStronger function/object
+    // it needed to change a context to hero object
+    </script>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars</title>
+  </head>
+  <body>
+    <script>
+      //to get information of 10 characters throw API- to put into an array of Objects
+      //to place it dynamically into the DOM
+      let data = [];
+      const getData = async () => {
+        // for every one of them:
+        for (let i = 1; i <= 10; i++) {
+          //fetch info about i person ${1}
+          const personInfo = await fetch(`https://swapi.dev/api/people/${i}`);
+          //create from it a json object:
+          const personJsonData = await personInfo.json();
+          //console.log it
+          console.log(personJsonData);
+          //fetch info about a planet
+          const planetInfo = await fetch(personJsonData.homeworld);
+          // //crate json object from it
+          const planetJsonData = await planetInfo.json();
+          console.log(planetJsonData);
+          // put it to data array
+          data.push({
+            name: personJsonData.name,
+            height: personJsonData.height,
+            planet: {
+              name: planetJsonData.name,
+              climat: planetJsonData.climate,
+            },
+          });
+        } //end of for cicle
+        console.log(data);
+        displayData();
+      };
+      const displayData = () => {
+        const table = document.createElement("table");
+        table.classList.add("star-wars");
+        const tableBody = document.createElement("tbody");
+        const tr = document.createElement("tr");
+        const title = document.createElement("td");
+        title.setAttribute("colspan", "5");
+        title.classList.add("header");
+        title.innerHTML = "Star Wars";
+
+        const categories = document.createElement("tr");
+        tr.appendChild(title);
+        tableBody.appendChild(tr);
+        tableBody.appendChild(categories);
+
+        data.forEach((item) => {
+          if (item.titles) {
+            return;
+          }
+          const tr = document.createElement("tr");
+          let td1 = document.createElement("td");
+          td1.innerHTML += item.name;
+          let td2 = document.createElement("td");
+          td2.innerHTML += item.hair;
+          let td3 = document.createElement("td");
+          td3.innerHTML += item.height;
+          let td4 = document.createElement("td");
+          td4.innerHTML += item.planet.name;
+          let td5 = document.createElement("td");
+          td5.innerHTML += item.planet.population;
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tr.appendChild(td4);
+          tr.appendChild(td5);
+
+          tableBody.appendChild(tr);
+        });
+        table.appendChild(tableBody);
+        document.body.appendChild(table);
+      };
+      getData();
+    </script>
+  </body>
+</html>
