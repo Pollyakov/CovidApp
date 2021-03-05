@@ -1,4 +1,4 @@
-const world = [];
+let world = [];
 //url with proxy
 const AllCountriesURL =
   `https://api.codetabs.com/v1/proxy?quest=` +
@@ -13,10 +13,11 @@ const getWorld = async () => {
   //   if (!world[e.region]) {
   //     world[e.region] = [e];
   //   } else {world[e.region].push(e);}  });
-  world = allJson.map( (c) => {cca2: c[cca2],
-                             region: c[region],
+  world = allJson.map( (c) => {return {"cca2": c.cca2,
+                                "region": c.region}
                             
 });
+console.log(world);
 };
 getWorld();
 const stats = [];
