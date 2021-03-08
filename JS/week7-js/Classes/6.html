@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+          class Room {
+            constructor(roomID, amount, level) {
+              this.roomID = roomID;
+              this.amount = amount;
+              this.level= level;
+              this.isFree = false;
+            }
+           isGoodFor(num){
+             if (this.amount >= num) {
+               this.isFree = false;
+            return true;
+          }  else
+              return false;
+            }
+
+             print() {
+        console.log(
+          `id: ${this.roomId} level: ${this.level} amount: ${this.amount} isFree: ${this.isFree}`
+        );
+      }
+           }
+
+
+           class Hotel {
+      constructor(room) {
+        this.rooms = [room];
+      }
+      isExist(id) {
+    return this.rooms.find((room) => room.roomId === id);
+  }
+
+  addRoom(newRoom) {
+    if (this.isExist(newRoom.roomId)) return false;
+    this.rooms.push(newRoom);
+    return true;
+  }
+
+  addNewRoom(id, level, amount) {
+    const newRoom = new Room(id, level, amount);
+    return this.addRoom(newRoom);
+  }
+
+  removeRoom(id) {
+    const index = this.rooms.indexOf(this.isExist(id));
+    if (index > -1) {
+      this.rooms.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  checkFreeRooms(amount) {
+    return this.rooms.filter((room) => room.amount >= amount && room.isFree);
+  }
+
+  checkIn(id, amount) {
+    const desiredRoom = this.isExist(id);
+    if (desiredRoom && desiredRoom.amount >= amount) {
+      desiredRoom.isFree = false;
+      return true;
+    }
+    return false;
+  }
+
+  HighRoomFree() {
+    const freeRooms = this.rooms.filter((room) => room.isFree);
+    const sortByLevel = freeRooms.sort((a, b) => b.level - a.level);
+    return sortByLevel
+      .filter((room) => room.level === sortByLevel[0].level)
+      .sort((a, b) => b.amount - a.amount);
+  }
+
+  getAllRooms(isFree) {
+    return this.rooms
+      .filter((room) => room.isFree === isFree)
+      .sort((a, b) => a.roomId - b.roomId);
+  }
+}
+/
+const hotel = new Hotel(room1);
+
+console.log(hotel.addNewRoom(1, 2, 3));
+hotel.addNewRoom(2, 4, 4);
+hotel.addNewRoom(7, 3, 5);
+console.log(hotel.addRoom(room2));
+hotel.checkIn(1, 1);
+console.log(hotel.rooms);
+console.log(hotel.getAllRooms(true));
+
+
+
+
+
+    </script>
+  </body>
+</html>

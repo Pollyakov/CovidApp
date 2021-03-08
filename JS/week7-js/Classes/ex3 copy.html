@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       //1.
+class SortNumbers {
+  constructor() {
+    this.numList = [];
+  }
+  addNum(n) {
+    const isPrime = (num) => {
+      for (let i = 2; i < num; i++) if (num % i === 0) return false;
+      return num > 1;
+    };
+    if (isPrime(n) && !this.numList.includes(n)) {
+      this.numList.push(n);
+      return true;
+    } else {
+      return false;
+    }
+  }
+  getAll() {
+    return this.numList;
+  }
+  removeNum(num) {
+    for (let i = 0; i < this.numList.length; i++) {
+      if (this.numList[i] === num) {
+        this.numList.splice(i, 1);
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  print() {
+    console.log(this.numList);
+  }
+  //10
+  share(instOfClass) {
+    let counter = 0;
+    for (let i = 0; i <= this.numList.length - 1; i++) {
+        for (let j = 0; j <= instOfClass.getAll().length-1; j++){
+            if ( this.numList[i]===instOfClass.getAll()[j]) {
+                counter++;
+            } 
+        }
+    }
+    return counter;
+  }
+  //11
+  union(sortNumber) {
+    let arrUnion = [...this.numList,...sortNumber.getAll()];
+    console.log(arrUnion);
+    let unionSet = new Set(arrUnion);
+    console.log(unionSet);
+    let arr = [...unionSet];
+    console.log(arr);
+    return arr;
+  }
+}
+
+//3
+let n1 = new SortNumbers();
+n1.addNum(10);
+console.log(n1.numList);
+n1.addNum(11);
+//7
+let n2 = new SortNumbers();
+n2.addNum(5);
+n2.addNum(3);
+n2.addNum(7);
+n2.addNum(13);
+let n3 = new SortNumbers();
+n3.addNum(1);
+n3.addNum(5);
+console.log(n3.numList);
+console.log("Share result", n3.share(n2));
+console.log('Union:', n3.union(n2));
+
+
+   </script> 
+</body>
+</html>
