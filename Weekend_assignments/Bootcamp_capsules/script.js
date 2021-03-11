@@ -7,7 +7,7 @@ const getData = async () => {
   );
   const studentsData = await reqStudents.json();
   console.log(studentsData);
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 5; i++) {
     const reqAdditionalInfo = await fetch(
       `https://apple-seeds.herokuapp.com/api/users/${i}`
     );
@@ -31,6 +31,7 @@ getData();
 //renders relevant data to the UI, creates table, 
 //each object transforms to line of the table
 const render = () => {
+  //document.body.innerHTML = " ";
      //creates table and its parts
   const table = document.querySelector(".table");
   const tableBody = document.createElement("tbody");
@@ -40,9 +41,10 @@ const render = () => {
   title.setAttribute("colspan", "10");
   title.classList.add("header");
   title.innerHTML = "Bootcamp students";
-  // building parts together  yes
+  // building parts together  
   tr.appendChild(title);//
   tableBody.appendChild(tr);
+
     data.forEach((student) => {
         const tr = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -61,18 +63,20 @@ const render = () => {
         td7.innerHTML += student.hobby;
         let td8 = document.createElement("td");
         td8.innerHTML += student.city;
+        //buttons
         const deleteBtn = document.createElement("button");
+        deleteBtn.addEventListener("click", (e) => deleteStudentInfo(e))
         const updateBtn = document.createElement("button");
         deleteBtn.classList.add("delete");
+        deleteBtn.setAttribute("id", student.id);
         updateBtn.classList.add("update");
         deleteBtn.innerText = "Delete";
         updateBtn.innerText = "Update";
         let td9 = document.createElement("td");
         td9.appendChild(deleteBtn);
-        // td9.innerHTML += deleteBtn;
         let td10= document.createElement("td");
         td10.appendChild(updateBtn);
-     
+        //building one row
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
@@ -83,10 +87,15 @@ const render = () => {
         tr.appendChild(td8);
         tr.appendChild(td9);
         tr.appendChild(td10);
-    
         tableBody.appendChild(tr); 
     });
     table.appendChild(tableBody);
-    document.body.appendChild(table);
+    container.appendChild(table);
 
+}
+
+const deleteStudentInfo = (e) => {
+  let i  = e.currentTarget.getAttribute("id");
+  data.splice(i,1);
+  render();
 }
