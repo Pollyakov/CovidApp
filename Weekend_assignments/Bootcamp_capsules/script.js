@@ -40,7 +40,7 @@ const render = () => {
   title.setAttribute("colspan", "10");
   title.classList.add("header");
   title.innerHTML = "Bootcamp students";
-  // building parts together
+  // building parts together  yes
   tr.appendChild(title);//
   tableBody.appendChild(tr);
     data.forEach((student) => {
