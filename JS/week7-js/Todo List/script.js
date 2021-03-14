@@ -20,6 +20,7 @@ let item3 = {
 
 let todo = [item1, item2, item3, item1]
 
+
 //variables
 const container = document.querySelector(".container");
 const input = document.querySelector("input");

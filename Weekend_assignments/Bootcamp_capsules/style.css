@@ -1,10 +1,15 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
 .table {
-    width: 65 vw;
+    width: 90%;
     border-collapse: collapse;
     margin: 35px 25px;
     font-size: 0.9em;
     font-family: 'Lora', serif;
-    min-width: 600px;
+    /* min-width: 600px; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
   .table td {
@@ -22,7 +27,7 @@
     background-color: #efffd2;
   } */
   .table tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #31708E;
 }
   .header {
     background-color: #31708E;
@@ -51,12 +56,33 @@ button {
   color: #5085A5;
 }
 
-.update {
+.Update, .Confirm {
   color: #31708E;
   background-color: #b7bbb7;
 }
 
-.delete {
+.Delete {
   font-weight: 500;
-  padding:9px;
+  padding:9px; 
+}
+.Cancel{
+   background-color: #9ed3f7;
+   border-color: gold;
+}
+.Confirm {
+  background-color: #F3D250;
+}
+.container {
+  margin:10px;
+  text-align: center;
+  width: 100%;
+}
+.active{
+  /* background-color:gold; */
+}
+input {
+  width: 90%;
+  border-radius: 4px;
+  border-color: gold;
+  font-style: italic;
 }
