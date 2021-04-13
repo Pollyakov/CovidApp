@@ -1,0 +1,10 @@
+1. You can't selectively load only the pieces you need with require but with imports, you can selectively load only the pieces you need. That can save memory.
+
+Loading is synchronous(step by step) for require on the other hand import can be asynchronous(without waiting for previous import) so it can perform a little better than require.
+
+ 2. to use  the import syntax :
+
+Save the file with .mjs extension, or
+Add { "type": "module" } in the nearest package.json.
+
+

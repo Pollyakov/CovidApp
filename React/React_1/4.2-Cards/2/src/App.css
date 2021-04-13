@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+.boxGreen {
+  background-color: green;
+  height: 500px;
+  width: 500px;
+}
+
+.boxPink {
+  background-color: pink;
+  height: 400px;
+  width: 400px;
+}
+
+.boxBlue {
+  background-color: blue;
+  height: 50px;
+  width: 380px;
+  margin-top: 50px;
+}
+
+
+
