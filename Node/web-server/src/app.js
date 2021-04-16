@@ -6,8 +6,6 @@ const publicDirPath = path.join(__dirname,'../public');
 
 app.use(express.static(publicDirPath));
 
-
-
 // app.get('/help', (req, res)=>{
 //     res.send({
 //         name: 'Ksenia',
@@ -24,6 +22,7 @@ app.get('/weather', (req, res)=>{
         temp: 15,
     })
 } );
+
 //to start up the server, once
 app.listen(3000, () => {
     console.log('Server is up on port 3000')

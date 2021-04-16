@@ -1,4 +1,5 @@
 const fs = require("fs");
+
 const add = (user) => {
   const usersData = load();
   const duplicateUser = usersData.find(
@@ -11,6 +12,7 @@ const add = (user) => {
     save(usersData);
   }
 };
+
 const remove = (id) => {
   const usersData = load();
   const removeUser = usersData.filter((el) => el.id !== id);
@@ -21,6 +23,7 @@ const remove = (id) => {
     console.log("couldn't find user");
   }
 };
+
 const update = (id, name, email) => {
   const currentUsersData = load();
 
@@ -72,6 +75,8 @@ const load = () => {
     return [];
   }
 };
+
+
 const save = (users) => {
   const dataJSON = JSON.stringify(users);
   fs.writeFileSync("users.json", dataJSON);
